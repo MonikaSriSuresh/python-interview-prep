@@ -66,8 +66,6 @@ Example:
 class Employee:
 
     @classmethod
-    def show
-
     def show_class(cls):
         print(cls)
 ```
