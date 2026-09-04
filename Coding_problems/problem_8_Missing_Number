@@ -1,0 +1,111 @@
+# Missing Number
+
+## Pattern
+Set
+
+## Recognition
+- Numbers from 0 to n
+- One number is missing
+- Find the missing number
+
+## Approach
+- Store all numbers in a set.
+- Iterate from 0 to n (inclusive).
+- Return the number that is not present in the set.
+
+## Code
+
+```python
+def missingNumber(nums):
+
+    seen = set(nums)
+
+    for i in range(len(nums) + 1):
+        if i not in seen:
+            return i
+```
+
+## Alternative 
+```python 
+def missingNumber(nums):
+
+    n = len(nums)
+
+    expected = n * (n + 1) // 2
+
+    actual = sum(nums)
+
+    return expected - actual
+```
+## Complexity
+
+Time: O(n)
+
+Space: O(n)
+
+## Interview Tip
+
+"I'll store all elements in a set for O(1) lookup. Then I'll iterate from 0 to n and return the first number that's not present."
+
+## Common Mistakes
+
+❌ Using
+
+for i in range(len(nums)):
+
+This checks only
+
+0 to n-1
+
+Correct
+
+for i in range(len(nums) + 1):
+
+because the numbers range from
+
+0 to n
+
+❌ Forgetting integer division
+
+Wrong
+
+expected = n * (n + 1) / 2
+
+Correct
+
+expected = n * (n + 1) // 2
+
+## Similar Problems
+Contains Duplicate
+First Missing Positive
+Longest Consecutive Sequence
+
+## Memory Trick
+0 to n
+    ↓
+Create Set
+    ↓
+Find Missing
+
+OR
+
+Expected Sum
+      -
+Actual Sum
+      ↓
+Missing Number
+
+#Which Solution Should I Use?
+
+Solution	Time	Space	Interview
+Set	O(n)	O(n)	Easy to explain
+Math Formula	O(n)	O(1)	Optimized
+
+## Interview Follow-up
+
+Q: Which solution would you choose?
+
+Answer:
+
+"I'd first explain the set-based solution because it's straightforward. Then I'd mention the mathematical formula as an optimization that reduces the extra space from O(n) to O(1)."
+

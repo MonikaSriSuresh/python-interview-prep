@@ -1,0 +1,56 @@
+# First Unique Character
+
+## Pattern
+HashMap (Dictionary)
+
+## Recognition
+- First unique character
+- First non-repeating character
+- Character appears only once
+
+## Approach
+- Create a dictionary to count the frequency of each character.
+- Traverse the string and store the count of each character.
+- Traverse the string again.
+- Return the first character whose frequency is 1.
+- If no such character exists, return None (or -1 if the problem asks for the index).
+
+## Code
+
+```python
+def first_unique_char(s):
+    count = {}
+
+    for char in s:
+        count[char] = count.get(char, 0) + 1
+
+    for char in s:
+        if count[char] == 1:
+            return char
+
+    return None
+```
+
+## Complexity
+
+Time: O(n)
+
+Space: O(n)
+
+## Interview Tip
+
+"I'll use a dictionary to count the frequency of each character. Then I'll iterate through the original string to preserve the order and return the first character whose frequency is one."
+
+## Common Mistakes
+
+❌ Returning the first key in the dictionary with value 1.
+
+Why?
+
+A dictionary stores frequencies, but the question asks for the first character in the original string.
+
+Example:
+
+s = "leetcode"
+
+You must iterate through s, not through the dictionary.

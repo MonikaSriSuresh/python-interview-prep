@@ -1,0 +1,82 @@
+# Group Anagrams
+
+## Pattern
+HashMap (Dictionary)
+
+## Recognition
+- Group anagrams
+- Group similar words
+- Same characters, different order
+- Return list of groups
+
+## Approach
+- Create an empty dictionary.
+- For each word, sort its characters.
+- Use the sorted string as the key.
+- If the key doesn't exist, create an empty list.
+- Append the original word to the corresponding list.
+- Return all dictionary values.
+
+## Code
+
+```python
+def groupAnagrams(strs):
+
+    groups = {}
+
+    for word in strs:
+
+        key = ''.join(sorted(word))
+
+        if key not in groups:
+            groups[key] = []
+
+        groups[key].append(word)
+
+    return list(groups.values())
+```
+
+## Complexity
+
+Time: O(n * k log k)
+
+- n = Number of words
+- k = Average length of each word
+
+Space: O(n)
+
+## Interview Tip
+
+"I'll use a dictionary where the key is the sorted version of each word. Since all anagrams produce the same sorted string, they'll be grouped under the same key."
+
+## example
+```python
+strs = ["eat","tea","tan","ate","nat","bat"]
+
+Word : eat
+
+Sorted : aet
+
+Dictionary
+
+{
+    "aet": ["eat"]
+}
+
+Word : tea
+
+Sorted : aet
+
+Already exists
+
+{
+    "aet": ["eat","tea"]
+}
+```
+
+## similiar problems
+
+Valid Anagram
+Find All Anagrams in a String
+Top K Frequent Words
+Group Shifted Strings

@@ -1,0 +1,100 @@
+# Top K Frequent Elements
+
+## Pattern
+HashMap (Dictionary) + Sorting
+
+## Recognition
+- Top K frequent elements
+- Most common elements
+- Frequency count
+- Return K most frequent values
+
+## Approach
+- Create a frequency dictionary.
+- Count the occurrence of each element.
+- Sort the dictionary items by frequency in descending order.
+- Return the first K keys.
+
+## Code
+
+```python
+def topKFrequent(nums, k):
+
+    count = {}
+
+    for num in nums:
+        count[num] = count.get(num, 0) + 1
+
+    sorted_items = sorted(
+        count.items(),
+        key=lambda x: x[1],
+        reverse=True
+    )
+
+    result = []
+
+    for key, value in sorted_items[:k]:
+        result.append(key)
+
+    return result
+```
+
+## Complexity
+
+Time: O(n log n)
+
+Space: O(n)
+
+## Interview Tip
+
+"I'll first count the frequency of each element using a dictionary. Then I'll sort the dictionary items by frequency in descending order and return the first K elements."
+
+## Common Mistakes
+
+❌ Sorting by key instead of frequency.
+
+Wrong
+
+sorted(count.items())
+
+Correct
+
+sorted(
+    count.items(),
+    key=lambda x: x[1],
+    reverse=True
+)
+
+❌ Forgetting reverse=True
+
+Without it:
+
+[(3,1),(2,2),(1,3)]
+
+You'll get the least frequent elements.
+
+❌ Returning tuples instead of keys.
+
+Wrong
+
+[(1,3),(2,2)]
+
+Correct
+
+[1,2]
+
+## Similar Problems
+Top K Frequent Words
+Sort Characters by Frequency
+K Closest Points
+Kth Largest Element
+
+## Optimization (Interview Follow-up)
+
+Interviewer:
+
+Can you do better than sorting?
+
+Answer:
+
+Yes. We can use a Heap (Priority Queue) to achieve O(n log k) or Bucket Sort to achieve O(n). The dictionary + sorting solution is simpler and works well unless a more optimized solution is required.

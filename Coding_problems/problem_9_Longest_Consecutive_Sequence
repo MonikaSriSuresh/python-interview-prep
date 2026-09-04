@@ -1,0 +1,226 @@
+# Longest Consecutive Sequence
+
+## Pattern
+Set
+
+## Recognition
+- Longest consecutive numbers
+- Unsorted array
+- Consecutive sequence
+- Return the length of the longest sequence
+
+## Approach
+- Convert the array into a set for O(1) lookup.
+- Iterate through each number in the set.
+- Check if it's the start of a sequence by verifying `(num - 1)` is not in the set.
+- If it is the start, count consecutive numbers using a while loop.
+- Track the maximum sequence length.
+
+## Code
+
+```python
+def longestConsecutive(nums):
+
+    seen = set(nums)
+    longest = 0
+
+    for num in seen:
+
+        if num - 1 not in seen:
+
+            current = num
+            length = 1
+
+            while current + 1 in seen:
+                current += 1
+                length += 1
+
+            longest = max(longest, length)
+
+    return longest
+```
+
+## Complexity
+
+Time: O(n)
+
+Space: O(n)
+
+## Interview Tip
+
+"I'll convert the array into a set for O(1) lookup. I'll only start counting from the beginning of a sequence, where `(num - 1)` doesn't exist. This avoids counting the same sequence multiple times."
+
+## Example
+
+nums = [100,4,200,1,3,2] #output 4
+Create Set
+{100,4,200,1,3,2}
+
+Iterate
+
+num = 100
+99 not in set ✅ #num - 1 not in seen:
+Start sequence
+100 #current
+Length = 1
+
+num = 4
+3 exists ❌
+Skip
+
+num = 200
+199 not in set ✅
+Start sequence
+200
+Length = 1
+
+num = 1
+0 not in set ✅
+start sequence
+
+Expand
+
+1
+
+2
+
+3
+
+4
+
+Length
+
+4
+
+Longest
+
+4
+## Why do we check (num - 1)?
+
+Example
+
+nums = [1,2,3,4]
+
+Without checking
+
+Start from 1
+
+Count 1 2 3 4
+
+Length = 4
+
+----------------
+
+Start from 2
+
+Count 2 3 4
+
+Length = 3
+
+----------------
+
+Start from 3
+
+Count 3 4
+
+Length = 2
+
+----------------
+
+Start from 4
+
+Count 4
+
+Length = 1
+
+We're counting the same sequence multiple times.
+
+Instead,
+
+Only start when
+
+num - 1 not in seen
+
+For
+
+1
+0 not present ✅
+
+For
+
+2
+1 present ❌
+
+Skip.
+
+For
+
+3
+2 present ❌
+
+Skip.
+
+Only 1 starts the sequence.
+
+Common Mistakes
+
+❌ Sorting the array first.
+
+nums.sort()
+
+Works, but
+
+Time = O(n log n)
+
+Expected interview solution:
+
+O(n)
+
+❌ Forgetting
+
+if num - 1 not in seen
+
+This causes unnecessary repeated counting.
+
+❌ Using a list instead of a set.
+
+List lookup
+
+if x in nums
+
+Time
+
+O(n)
+
+Set lookup
+
+if x in seen
+
+Time
+
+O(1)
+## Similar Problems
+Missing Number
+Contains Duplicate
+Happy Number
+First Missing Positive
+## Memory Trick
+Array
+   ↓
+Set
+   ↓
+Find Start
+(num-1 not present)
+   ↓
+Expand Forward
+(current+1)
+   ↓
+Track Maximum Length
+
+## ⭐ Interview Follow-up
+
+Q: Why do we check num - 1 instead of num + 1?
+
+Answer:
+
+We only want to start counting from the beginning of each sequence. If num - 1 exists, then the current number is in the middle of a sequence, so we skip it. This ensures every sequence is counted exactly once.

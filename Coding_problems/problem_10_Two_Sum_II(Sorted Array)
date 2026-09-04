@@ -1,0 +1,65 @@
+# Two Sum II (Sorted Array)
+
+## Input
+
+```python
+numbers = [1,2,4,6,8,12]
+target = 10
+```
+
+## Output
+
+```python
+[1, 4]
+```
+
+> **Note:** Some platforms (like LeetCode) expect **1-based indices**, so the output is `[2,5]`. If the interviewer asks for **0-based indices**, the output is `[1,4]`. Always clarify this.
+
+## Pattern
+Two Pointers
+
+## Recognition
+- Sorted array
+- Target sum
+- O(1) extra space
+
+## Approach
+- Initialize two pointers:
+  - Left at the beginning.
+  - Right at the end.
+- Calculate the sum.
+- If sum == target, return the indices.
+- If sum < target, move the left pointer.
+- If sum > target, move the right pointer.
+
+## Code
+
+```python
+def twoSum(numbers, target):
+
+    left = 0
+    right = len(numbers) - 1
+
+    while left < right:
+
+        total = numbers[left] + numbers[right]
+
+        if total == target:
+            return [left, right]
+
+        elif total < target:
+            left += 1
+
+        else:
+            right -= 1
+```
+
+## Complexity
+
+Time: O(n)
+
+Space: O(1)
+
+## Interview Tip
+
+"Since the array is sorted, I can use two pointers. If the sum is smaller than the target, I'll move the left pointer. If it's larger, I'll move the right pointer."

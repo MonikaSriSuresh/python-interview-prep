@@ -1,0 +1,80 @@
+# Move Zeroes
+
+## Input
+
+```python
+nums = [0,1,0,3,12]
+```
+
+## Output
+
+```python
+[1,3,12,0,0]
+```
+
+## Pattern
+
+Two Pointers
+
+## Recognition
+
+- Move all zeros to the end
+- Maintain the order of non-zero elements
+- In-place modification
+
+## Approach
+
+- Initialize a pointer `left = 0`.
+- Traverse the array using `right`.
+- If `nums[right]` is non-zero:
+  - Swap `nums[left]` and `nums[right]`.
+  - Increment `left`.
+- Continue until the end of the array.
+
+## Code
+
+```python
+def moveZeroes(nums):
+
+    left = 0
+
+    for right in range(len(nums)):
+
+        if nums[right] != 0:
+            nums[left], nums[right] = nums[right], nums[left]
+            left += 1
+```
+
+## Complexity
+
+Time: O(n)
+
+Space: O(1)
+
+## Interview Tip
+
+"I'll use two pointers. The `left` pointer tracks the position where the next non-zero element should go, while the `right` pointer scans the array. Whenever I find a non-zero element, I swap it into the correct position."
+
+## Dry Run
+Input
+nums = [0,1,0,3,12]
+Left	Right	Array	Action
+0	0	[0,1,0,3,12]	Zero → Skip
+0	1	[0,1,0,3,12]	Swap 0 & 1
+1	2	[1,0,0,3,12]	Zero → Skip
+1	3	[1,0,0,3,12]	Swap 0 & 3
+2	4	[1,3,0,0,12]	Swap 0 & 12
+
+## Common Mistakes
+
+❌ Creating a new list (uses extra space).
+
+❌ Removing zeros using remove() while iterating.
+
+❌ Not maintaining the order of non-zero elements.
+
+## Similar Problems
+Remove Element
+Remove Duplicates from Sorted Array
+Sort Colors
+Partition Array

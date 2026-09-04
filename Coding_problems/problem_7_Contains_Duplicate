@@ -1,0 +1,49 @@
+# Contains Duplicate
+
+## Pattern
+Set
+
+## Recognition
+- Check if duplicates exist
+- Return True if any duplicate is found
+- Return False if all elements are unique
+
+## Approach
+- Create an empty set.
+- Traverse the array.
+- If the current element already exists in the set, return True.
+- Otherwise, add the element to the set.
+- If the loop completes, return False.
+
+## Code
+
+```python
+def containsDuplicate(nums):
+
+    seen = set()
+
+    for num in nums:
+
+        if num in seen:
+            return True
+
+        seen.add(num)
+
+    return False
+```
+
+## Complexity
+
+Time: O(n)
+
+Space: O(n)
+
+## Interview Tip
+
+"I'll use a set because I only need to know whether an element has been seen before. Set lookup is O(1) on average, making the overall solution O(n)."
+
+## Similar Problems
+First Duplicate
+Missing Number
+Longest Consecutive Sequence
+Happy Number

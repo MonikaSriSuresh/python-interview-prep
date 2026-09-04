@@ -1,0 +1,47 @@
+# First Duplicate (First Number Encountered Twice)
+
+## Pattern
+HashMap / Set
+
+## Recognition
+- Find the first duplicate
+- First repeated element
+- Return the first element encountered twice
+
+## Approach
+- Create an empty set.
+- Iterate through the array.
+- If the current number is already in the set, return it.
+- Otherwise, add it to the set.
+- If no duplicate exists, return `None`.
+
+## Code
+
+```python
+def first_duplicate(nums):
+    seen = set()
+
+    for num in nums:
+        if num in seen:
+            return num
+        seen.add(num)
+
+    return None
+```
+
+## Complexity
+
+Time: O(n)
+
+Space: O(n)
+
+## Interview Tip
+
+"I'll use a set because I only need to know whether I've seen an element before. A set provides O(1) average lookup, making the overall solution O(n)."
+
+## Common Mistakes
+❌ Using a dictionary when only existence is needed.
+
+❌ Returning all duplicates instead of the first repeated one.
+
+❌ Confusing "first duplicate encountered" with "first element having frequency > 1".

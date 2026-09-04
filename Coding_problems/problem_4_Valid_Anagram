@@ -1,0 +1,66 @@
+# Valid Anagram
+
+## Pattern
+HashMap (Dictionary) / Counter
+
+## Recognition
+- Check whether two strings are anagrams
+- Same characters with same frequency
+- Rearranging one string forms another
+
+## Approach
+- Check if both strings have the same length.
+- If not, return False.
+- Create a frequency dictionary for both strings.
+- Compare both dictionaries.
+- If they are equal, return True; otherwise, return False.
+
+## Code
+
+```python
+def isAnagram(s, t):
+
+    if len(s) != len(t):
+        return False
+
+    count1 = {}
+    count2 = {}
+
+    for char in s:
+        count1[char] = count1.get(char, 0) + 1
+
+    for char in t:
+        count2[char] = count2.get(char, 0) + 1
+
+    return count1 == count2
+```
+
+## Alternative solution
+```python
+from collections import Counter
+
+def isAnagram(s, t):
+
+    if len(s) != len(t):
+        return False
+
+    return Counter(s) == Counter(t)
+```
+## Complexity
+
+Time: O(n)
+
+Space: O(n)
+
+## Interview Tip
+
+"I'll first compare the lengths because strings with different lengths can't be anagrams. Then I'll count the frequency of each character in both strings using dictionaries and compare the two frequency maps."
+
+## common Mistakes
+Common Mistakes
+
+❌ Forgetting to check the lengths first.
+
+❌ Comparing sorted strings without discussing the time complexity.
+
+❌ Using a set instead of a dictionary (a set only checks existence, not frequency).
